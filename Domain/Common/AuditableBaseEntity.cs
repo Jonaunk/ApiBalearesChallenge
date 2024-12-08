@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Common
 {
-    public class AuditableBaseEntity
+    public class AuditableBaseEntity : AuditableBaseEntity<int>
     {
     }
     public abstract class AuditableBaseEntity<T> : BaseEntity<T>, IAuditableBaseEntity

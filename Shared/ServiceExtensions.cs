@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,15 @@ namespace Shared
 {
     public static class ServiceExtensions
     {
+        public static void AddSharedLayer(this IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
+        {
+
+
+            services
+            .AddTransient<IMediator, Mediator>();
+     
+
+            
+        }
     }
 }

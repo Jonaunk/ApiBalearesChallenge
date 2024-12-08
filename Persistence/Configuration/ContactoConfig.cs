@@ -42,6 +42,10 @@ namespace Persistence.Configuration
             builder.Property(p => p.ImagenPerfil)
                  .HasColumnType("varchar(max)");
 
+            builder.HasOne(p => p.Ciudad)
+                .WithMany(c => c.Contactos)
+                .HasForeignKey(c => c.CiudadId);
+
         }
     }
 }

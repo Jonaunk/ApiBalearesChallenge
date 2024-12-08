@@ -1,4 +1,4 @@
-﻿using Application.Common;
+﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Common.Wrappers;
 using Application.Features.Authenticate.User;
