@@ -1,7 +1,9 @@
-﻿using Application.Common.Wrappers;
+﻿using Application.Common.Interfaces;
+using Application.Common.Wrappers;
 using Domain.Entities.Users;
 using Domain.Settings;
 using Identity.Context;
+using Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,9 +27,10 @@ namespace Identity
 
             services.AddIdentity<Usuario, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
 
+            services.AddTransient<IAccountService, AccountService>();
 
             services.Configure<JWTSettings>(configuration.GetSection("JWTSettings"));
-          
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

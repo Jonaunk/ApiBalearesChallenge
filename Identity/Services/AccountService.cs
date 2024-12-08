@@ -6,6 +6,7 @@ using Domain.Entities.Users;
 using Domain.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,12 +22,12 @@ namespace Identity.Services
         private readonly SignInManager<Usuario> _signInManager;
         private readonly JWTSettings _jwtSettings;
         private readonly CurrentUser _user;
-        public AccountService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, JWTSettings jwtSettings, CurrentUser user)
+        public AccountService(UserManager<Usuario> userManager, SignInManager<Usuario> signInManager, IOptions<JWTSettings> jwtSettings, ICurrentUserService currentUserService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _jwtSettings = jwtSettings;
-            _user = user;
+            _jwtSettings = jwtSettings.Value;
+            _user = currentUserService.User;
         }
 
         public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
@@ -91,7 +92,7 @@ namespace Identity.Services
 
         }
 
-        public async Task<Response<string>> RegisterAsync(RegisterRequest request, string origin)
+        public async Task<Response<string>> RegisterAsync(RegisterRequest request)
         {
             var usuarioConElMismoUserName = await _userManager.FindByNameAsync(request.UserName);
             if (usuarioConElMismoUserName != null)

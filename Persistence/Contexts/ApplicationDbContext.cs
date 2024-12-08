@@ -2,6 +2,7 @@
 using Domain.Common;
 using Domain.Entities.Contactos;
 using Microsoft.EntityFrameworkCore;
+using Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace Persistence.Contexts
     public class ApplicationDbContext : DbContext
     {
         private readonly CurrentUser _user;
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, CurrentUser user) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService) : base(options)
         {
-            _user = user;
+            _user = currentUserService.User;
         }
 
         public DbSet<Contacto> Contactos { get; set; }

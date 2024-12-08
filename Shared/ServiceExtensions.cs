@@ -16,7 +16,7 @@ namespace Shared
 
             services
             .AddTransient<IMediator, Mediator>();
-     
+            
 
             
         }

@@ -1,4 +1,5 @@
 ﻿using Domain.Settings;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -9,10 +10,10 @@ namespace BalearesChallengeApi.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly JWTSettings _jwtSettings;
-        public JwtValidationMiddleware(RequestDelegate next, JWTSettings jwtSettings)
+        public JwtValidationMiddleware(RequestDelegate next, IOptions<JWTSettings> jwtSettings)
         {
             _next = next;
-            _jwtSettings = jwtSettings;
+            _jwtSettings = jwtSettings.Value;
         }
 
         public async Task InvokeAsync(HttpContext context)
