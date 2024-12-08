@@ -121,7 +121,7 @@ namespace Identity.Services
             if (!result.Succeeded)
                 throw new ApiException($"{result.Errors}");
 
-            return new Response<string>(usuario.Id, message: $"Usuario {usuario.UserName} registrado correctamente. Por favor chequear en {usuario.Email} para verificar tu cuenta!");
+            return new Response<string>(usuario.Id, message: $"Usuario {usuario.UserName} registrado correctamente.");
         }
 
         private async Task<JwtSecurityToken> GenerateJwtToken(Usuario usuario)

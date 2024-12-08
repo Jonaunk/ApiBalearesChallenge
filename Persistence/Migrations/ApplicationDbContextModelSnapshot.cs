@@ -123,7 +123,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ProvinciaId");
 
-                    b.ToTable("Ciudad");
+                    b.ToTable("Ciudades");
                 });
 
             modelBuilder.Entity("Domain.Entities.Domain.Provincia", b =>
@@ -161,7 +161,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Provincia");
+                    b.ToTable("Provincias");
                 });
 
             modelBuilder.Entity("Domain.Entities.Contactos.Contacto", b =>

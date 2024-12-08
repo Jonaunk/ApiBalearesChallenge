@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241208192126_Initial")]
+    [Migration("20241208201209_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -126,7 +126,7 @@ namespace Persistence.Migrations
 
                     b.HasIndex("ProvinciaId");
 
-                    b.ToTable("Ciudad");
+                    b.ToTable("Ciudades");
                 });
 
             modelBuilder.Entity("Domain.Entities.Domain.Provincia", b =>
@@ -164,7 +164,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Provincia");
+                    b.ToTable("Provincias");
                 });
 
             modelBuilder.Entity("Domain.Entities.Contactos.Contacto", b =>

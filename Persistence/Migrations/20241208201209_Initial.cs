@@ -12,7 +12,7 @@ namespace Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Provincia",
+                name: "Provincias",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -27,11 +27,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Provincia", x => x.Id);
+                    table.PrimaryKey("PK_Provincias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ciudad",
+                name: "Ciudades",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -47,11 +47,11 @@ namespace Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ciudad", x => x.Id);
+                    table.PrimaryKey("PK_Ciudades", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ciudad_Provincia_ProvinciaId",
+                        name: "FK_Ciudades_Provincias_ProvinciaId",
                         column: x => x.ProvinciaId,
-                        principalTable: "Provincia",
+                        principalTable: "Provincias",
                         principalColumn: "Id");
                 });
 
@@ -80,15 +80,15 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Contactos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contactos_Ciudad_CiudadId",
+                        name: "FK_Contactos_Ciudades_CiudadId",
                         column: x => x.CiudadId,
-                        principalTable: "Ciudad",
+                        principalTable: "Ciudades",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ciudad_ProvinciaId",
-                table: "Ciudad",
+                name: "IX_Ciudades_ProvinciaId",
+                table: "Ciudades",
                 column: "ProvinciaId");
 
             migrationBuilder.CreateIndex(
@@ -104,10 +104,10 @@ namespace Persistence.Migrations
                 name: "Contactos");
 
             migrationBuilder.DropTable(
-                name: "Ciudad");
+                name: "Ciudades");
 
             migrationBuilder.DropTable(
-                name: "Provincia");
+                name: "Provincias");
         }
     }
 }

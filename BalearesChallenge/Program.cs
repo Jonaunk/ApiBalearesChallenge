@@ -1,8 +1,13 @@
 using Application;
 using BalearesChallengeApi.Extensions;
+using Domain.Entities.Users;
 using Identity;
+using Identity.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using Persistence.Contexts;
+using Persistence.Seeds;
 using Shared;
 using System.Text.Json.Serialization;
 
@@ -95,4 +100,26 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+await CargarSeeds();
+
 app.Run();
+
+
+async Task CargarSeeds()
+{
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+
+    var userManager = services.GetRequiredService<UserManager<Usuario>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    var identityContext = services.GetRequiredService<IdentityContext>();
+    identityContext.Database.EnsureCreated();
+
+
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.EnsureCreated();
+
+    await ProvinciasSeed.SeedProvinciaAsync(context);
+    await CiudadesSeed.SeedCiudadAsync(context);
+   
+}

@@ -1,4 +1,5 @@
 ﻿using Domain.Settings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,58 +19,63 @@ namespace BalearesChallengeApi.Middlewares
 
         public async Task InvokeAsync(HttpContext context)
         {
-            
-            var authorizationHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+            var endpoint = context.GetEndpoint();
+            var authorizeAttribute = endpoint?.Metadata?.GetMetadata<AuthorizeAttribute>();
 
-            if (string.IsNullOrEmpty(authorizationHeader) || !authorizationHeader.StartsWith("Bearer "))
+            // Si la acción tiene el atributo [Authorize], se procede con la validación del token.
+            if (authorizeAttribute != null)
             {
-                context.Response.StatusCode = 401; // Unauthorized
-                await context.Response.WriteAsync("Falta el token o es inválido.");
-                return;
-            }
+                var authorizationHeader = context.Request.Headers["Authorization"].FirstOrDefault();
 
-            var token = authorizationHeader.Substring("Bearer ".Length).Trim();
-
-            try
-            {
-                
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_jwtSettings.Key); 
-
-                var validationParameters = new TokenValidationParameters
+                if (string.IsNullOrEmpty(authorizationHeader) || !authorizationHeader.StartsWith("Bearer "))
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false, 
-                    ValidateAudience = false, 
-                    ClockSkew = TimeSpan.Zero 
-                };
-
-                var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
-
-                if (validatedToken is JwtSecurityToken jwtToken)
-                {
-                    // Verificar si el token ha expirado
-                    var expirationDate = jwtToken.ValidTo;
-                    if (expirationDate < DateTime.UtcNow)
-                    {
-                        context.Response.StatusCode = 401; // Unauthorized
-                        await context.Response.WriteAsync("Token Expirado.");
-                        return;
-                    }
+                    context.Response.StatusCode = 401; // Unauthorized
+                    await context.Response.WriteAsync("Falta el token o es inválido.");
+                    return;
                 }
 
-                
-                context.User = principal;
-            }
-            catch (Exception)
-            {
-                context.Response.StatusCode = 401; // Unauthorized
-                await context.Response.WriteAsync("El Token es invalido.");
-                return;
+                var token = authorizationHeader.Substring("Bearer ".Length).Trim();
+
+                try
+                {
+
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var key = Encoding.ASCII.GetBytes(_jwtSettings.Key);
+
+                    var validationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero
+                    };
+
+                    var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+
+                    if (validatedToken is JwtSecurityToken jwtToken)
+                    {
+                        // Verificar si el token ha expirado
+                        var expirationDate = jwtToken.ValidTo;
+                        if (expirationDate < DateTime.UtcNow)
+                        {
+                            context.Response.StatusCode = 401; // Unauthorized
+                            await context.Response.WriteAsync("Token Expirado.");
+                            return;
+                        }
+                    }
+
+
+                    context.User = principal;
+                }
+                catch (Exception)
+                {
+                    context.Response.StatusCode = 401; // Unauthorized
+                    await context.Response.WriteAsync("El Token es invalido.");
+                    return;
+                }
             }
 
-            
             await _next(context);
         }
     }

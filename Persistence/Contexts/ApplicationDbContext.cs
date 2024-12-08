@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Common;
 using Domain.Entities.Contactos;
+using Domain.Entities.Domain;
 using Microsoft.EntityFrameworkCore;
 using Shared.Services;
 using System;
@@ -20,6 +21,8 @@ namespace Persistence.Contexts
         }
 
         public DbSet<Contacto> Contactos { get; set; }
+        public DbSet<Ciudad> Ciudades { get; set; }
+        public DbSet<Provincia> Provincias { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
