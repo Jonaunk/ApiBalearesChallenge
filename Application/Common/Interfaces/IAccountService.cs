@@ -1,5 +1,6 @@
 ﻿using Application.Common.Wrappers;
 using Application.Features.Authenticate.User;
+using Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Application.Common.Interfaces
         Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request);
         Task<Response<string>> RegisterAsync(RegisterRequest request);
         Task<Response<AuthenticationResponse>> GetUser();
+        Task<List<Usuario>> GetUsuariosOrdenadosPorEmailAsync();
     }
 }
     

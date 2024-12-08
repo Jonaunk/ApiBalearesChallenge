@@ -160,5 +160,15 @@ namespace Identity.Services
 
             return jwtSecutiryToken;
         }
+
+
+        public async Task<List<Usuario>> GetUsuariosOrdenadosPorEmailAsync()
+        {
+            var usuarios = await _userManager.Users
+                .OrderBy(u => u.Email)
+                .ToListAsync();
+
+            return usuarios;
+        }
     }
 }
