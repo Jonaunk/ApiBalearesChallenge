@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using Application.Common.Interfaces;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,11 @@ namespace Shared
 
 
             services
-            .AddTransient<IMediator, Mediator>();
-            
+            .AddTransient<IMediator, Mediator>()
+            .AddTransient<IImagenService, ImagenService>();
 
-            
+
+
         }
     }
 }
