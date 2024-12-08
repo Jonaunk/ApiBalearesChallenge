@@ -33,6 +33,9 @@ namespace Application.Features.Contactos.Queries.GetAllContactosQuery
             if (parameters.ProvinciaId != null && parameters.ProvinciaId != 0)
                 Query.Where(x => x.ProvinciaId == parameters.ProvinciaId);
 
+            if (parameters.OrdenarPorMail != null && parameters.OrdenarPorMail is true) // Verifica si se debe ordenar por email
+                Query.OrderBy(x => x.Email);
+
             Query
               .Include(x => x.Provincia)
               .Include(x=> x.Ciudad);

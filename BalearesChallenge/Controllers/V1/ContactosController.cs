@@ -41,7 +41,8 @@ namespace BalearesChallengeApi.Controllers.V1
                 Email = filter.Email,
                 Telefono = filter.Telefono,
                 CiudadId = filter.CiudadId,
-                ProvinciaId = filter.ProvinciaId
+                ProvinciaId = filter.ProvinciaId,
+                OrdenarPorMail = filter.OrdenarPorMail
             }));
         }
 
