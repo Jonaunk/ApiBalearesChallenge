@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Authenticate\Queries\" />
-    <Folder Include="Features\Contactos\Queries\" />
   </ItemGroup>
 
 </Project>

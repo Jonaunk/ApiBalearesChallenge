@@ -1,5 +1,6 @@
 ﻿using Application.Features.Authenticate.Commands.RegisterCommand;
 using Application.Features.Contactos.Commands.CreateContacto;
+using Application.Features.Contactos.Queries.GetAllContactosQuery;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,22 @@ namespace BalearesChallengeApi.Controllers.V1
                 Telefono = command.Telefono,
                 Direccion = command.Direccion,
                 CiudadId = command.CiudadId
+            }));
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync([FromQuery] PaginationContactosParameters filter)
+        {
+            return Ok(await Mediator.Send(new GetAllContactosQuery
+            {
+                PageNumber = filter.PageNumber,
+                PageSize = filter.PageSize,
+                Id = filter.Id,
+                Nombre = filter.Nombre,
+                Email = filter.Email,
+                Telefono = filter.Telefono
             }));
         }
 
