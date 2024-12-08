@@ -36,7 +36,7 @@ namespace Application.Features.Contactos.Queries.GetAllContactosQuery
             if (parameters.OrdenarPorMail != null && parameters.OrdenarPorMail is true) // Verifica si se debe ordenar por email
                 Query.OrderBy(x => x.Email);
 
-            Query
+            Query.Where(x => x.FechaBaja == null)
               .Include(x => x.Provincia)
               .Include(x=> x.Ciudad);
         }

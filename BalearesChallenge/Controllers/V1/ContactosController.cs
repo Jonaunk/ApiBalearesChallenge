@@ -1,5 +1,6 @@
 ﻿using Application.Features.Authenticate.Commands.RegisterCommand;
 using Application.Features.Contactos.Commands.CreateContacto;
+using Application.Features.Contactos.Commands.DeleteContactoById;
 using Application.Features.Contactos.Queries.GetAllContactosQuery;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -47,5 +48,10 @@ namespace BalearesChallengeApi.Controllers.V1
             }));
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody] DeleteContactoByIdCommand command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
     }
 }
