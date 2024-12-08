@@ -3,17 +3,20 @@ using Application.Features.Contactos.Commands.CreateContacto;
 using Application.Features.Contactos.Commands.DeleteContactoById;
 using Application.Features.Contactos.Commands.UpdateContacto;
 using Application.Features.Contactos.Queries.GetAllContactosQuery;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BalearesChallengeApi.Controllers.V1
 {
+    [ApiVersion("1.0")]
+    [Authorize]
     public class ContactosController : BaseApiController
     {
 
 
         [HttpPost]
-        [AllowAnonymous]
+        
         public async Task<IActionResult> CreateContactoAsync(CreateContactoCommand command)
         {
             return Ok(await Mediator.Send(new CreateContactoCommand

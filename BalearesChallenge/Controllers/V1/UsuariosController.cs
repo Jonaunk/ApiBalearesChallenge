@@ -2,6 +2,7 @@
 using Application.Features.Authenticate.Commands.RegisterCommand;
 using Application.Features.Authenticate.User;
 using Application.Features.Usuarios.Queries.GetUsuariosOrdenadosQuery;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BalearesChallengeApi.Controllers.V1
@@ -36,6 +37,7 @@ namespace BalearesChallengeApi.Controllers.V1
         }
 
         [HttpGet("usuarios-ordenados")]
+        [Authorize]
         public async Task<IActionResult> GetUsuariosOrdenadosAsync()
         {
             var result = await Mediator.Send(new GetUsuariosOrdenadosQuery());
