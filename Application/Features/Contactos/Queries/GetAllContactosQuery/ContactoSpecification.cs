@@ -1,10 +1,5 @@
 ﻿using Ardalis.Specification;
 using Domain.Entities.Contactos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Contactos.Queries.GetAllContactosQuery
 {
@@ -38,7 +33,7 @@ namespace Application.Features.Contactos.Queries.GetAllContactosQuery
 
             Query.Where(x => x.FechaBaja == null)
               .Include(x => x.Provincia)
-              .Include(x=> x.Ciudad);
+              .Include(x => x.Ciudad);
         }
     }
 

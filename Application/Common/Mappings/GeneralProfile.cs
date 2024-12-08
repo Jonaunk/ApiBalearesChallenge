@@ -1,5 +1,6 @@
 ﻿using Application.DTOs;
 using Application.Features.Contactos.Commands.CreateContacto;
+using Application.Features.Contactos.Commands.UpdateContacto;
 using Application.Features.Contactos.Queries;
 using AutoMapper;
 using Domain.Entities.Contactos;
@@ -18,6 +19,7 @@ namespace Application.Common.Mappings
         {
             CreateMap<CreateContactoCommand, Contacto>().ReverseMap();
             CreateMap<Contacto, ContactoResponse>().ReverseMap();
+            CreateMap<UpdateContactoCommand, Contacto>().ReverseMap();
 
             CreateMap<Ciudad, CiudadDTO>().ReverseMap();
             CreateMap<Provincia, ProvinciaDTO>().ReverseMap();
