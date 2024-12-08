@@ -25,6 +25,10 @@ namespace Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(p => p.Empresa)
+                .IsRequired()
+                .HasMaxLength(100);
+
             builder.Property(p => p.Email)
                 .IsRequired()
                 .HasMaxLength(250);

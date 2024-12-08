@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241208210005_Initial")]
+    [Migration("20241208213313_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -43,6 +43,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Empresa")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("FechaAlta")

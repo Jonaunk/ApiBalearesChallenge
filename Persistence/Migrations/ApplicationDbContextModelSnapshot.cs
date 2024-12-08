@@ -42,6 +42,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Empresa")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("FechaAlta")
                         .HasColumnType("datetime2");
 

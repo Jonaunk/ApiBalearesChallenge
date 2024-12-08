@@ -18,6 +18,7 @@ namespace BalearesChallengeApi.Controllers.V1
             {
                 Nombre = command.Nombre,
                 Apellido = command.Apellido,
+                Empresa = command.Empresa,
                 Email = command.Email,
                 FechaNacimiento = command.FechaNacimiento,
                 Telefono = command.Telefono,
