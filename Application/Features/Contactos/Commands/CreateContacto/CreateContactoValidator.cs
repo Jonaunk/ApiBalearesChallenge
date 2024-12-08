@@ -40,6 +40,9 @@ namespace Application.Features.Contactos.Commands.CreateContacto
                 .NotEmpty().WithMessage("{PropertyName} debe ser un valor válido.")
                 .GreaterThan(0).WithMessage("{PropertyName} debe ser un número mayor que cero.");
 
+            RuleFor(p => p.ProvinciaId)
+                .NotEmpty().WithMessage("{PropertyName} debe ser un valor válido.")
+                .GreaterThan(0).WithMessage("{PropertyName} debe ser un número mayor que cero.");
         }
     }
 

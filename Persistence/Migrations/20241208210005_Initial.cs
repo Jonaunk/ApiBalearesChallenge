@@ -68,6 +68,7 @@ namespace Persistence.Migrations
                     Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CiudadId = table.Column<int>(type: "int", nullable: true),
+                    ProvinciaId = table.Column<int>(type: "int", nullable: true),
                     ImagenPerfil = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UsuarioAlta = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FechaAlta = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -84,6 +85,11 @@ namespace Persistence.Migrations
                         column: x => x.CiudadId,
                         principalTable: "Ciudades",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Contactos_Provincias_ProvinciaId",
+                        column: x => x.ProvinciaId,
+                        principalTable: "Provincias",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -95,6 +101,11 @@ namespace Persistence.Migrations
                 name: "IX_Contactos_CiudadId",
                 table: "Contactos",
                 column: "CiudadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contactos_ProvinciaId",
+                table: "Contactos",
+                column: "ProvinciaId");
         }
 
         /// <inheritdoc />

@@ -60,6 +60,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProvinciaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
@@ -79,6 +82,8 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CiudadId");
+
+                    b.HasIndex("ProvinciaId");
 
                     b.ToTable("Contactos");
                 });
@@ -170,7 +175,13 @@ namespace Persistence.Migrations
                         .WithMany("Contactos")
                         .HasForeignKey("CiudadId");
 
+                    b.HasOne("Domain.Entities.Domain.Provincia", "Provincia")
+                        .WithMany("Contactos")
+                        .HasForeignKey("ProvinciaId");
+
                     b.Navigation("Ciudad");
+
+                    b.Navigation("Provincia");
                 });
 
             modelBuilder.Entity("Domain.Entities.Domain.Ciudad", b =>
@@ -190,6 +201,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Entities.Domain.Provincia", b =>
                 {
                     b.Navigation("Ciudades");
+
+                    b.Navigation("Contactos");
                 });
 #pragma warning restore 612, 618
         }

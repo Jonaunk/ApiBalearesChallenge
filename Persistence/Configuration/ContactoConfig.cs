@@ -46,6 +46,10 @@ namespace Persistence.Configuration
                 .WithMany(c => c.Contactos)
                 .HasForeignKey(c => c.CiudadId);
 
+            builder.HasOne(p => p.Provincia)
+                .WithMany(c => c.Contactos)
+                .HasForeignKey(c => c.ProvinciaId);
+
         }
     }
 }

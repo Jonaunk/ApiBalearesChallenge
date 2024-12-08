@@ -22,7 +22,8 @@ namespace BalearesChallengeApi.Controllers.V1
                 FechaNacimiento = command.FechaNacimiento,
                 Telefono = command.Telefono,
                 Direccion = command.Direccion,
-                CiudadId = command.CiudadId
+                CiudadId = command.CiudadId,
+                ProvinciaId = command.ProvinciaId
             }));
         }
 
@@ -38,7 +39,9 @@ namespace BalearesChallengeApi.Controllers.V1
                 Id = filter.Id,
                 Nombre = filter.Nombre,
                 Email = filter.Email,
-                Telefono = filter.Telefono
+                Telefono = filter.Telefono,
+                CiudadId = filter.CiudadId,
+                ProvinciaId = filter.ProvinciaId
             }));
         }
 

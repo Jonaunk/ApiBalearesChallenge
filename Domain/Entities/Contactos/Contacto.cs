@@ -17,8 +17,10 @@ namespace Domain.Entities.Contactos
         public string? Telefono { get; set; }
         public string? Direccion { get; set; }
         public int? CiudadId { get; set; }
+        public int? ProvinciaId { get; set; }
         public string? ImagenPerfil { get; set; }
 
         public virtual Ciudad? Ciudad { get; set; }
+        public virtual Provincia? Provincia { get; set; }
     }
 }

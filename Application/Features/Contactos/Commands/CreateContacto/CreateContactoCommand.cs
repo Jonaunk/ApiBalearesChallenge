@@ -17,5 +17,6 @@ namespace Application.Features.Contactos.Commands.CreateContacto
         public string? Telefono { get; set; }
         public string? Direccion { get; set; }
         public int? CiudadId { get; set; }
+        public int? ProvinciaId { get; set; }
     }
 }

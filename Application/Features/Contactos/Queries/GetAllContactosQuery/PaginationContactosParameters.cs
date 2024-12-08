@@ -13,5 +13,7 @@ namespace Application.Features.Contactos.Queries.GetAllContactosQuery
         public string? Nombre { get; set; }
         public string? Email { get; set; }
         public string? Telefono { get; set; }
+        public int? CiudadId { get; set; }
+        public int? ProvinciaId { get; set; }
     }
 }

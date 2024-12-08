@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,8 @@ namespace Application.Features.Contactos.Queries
         public DateTime FechaNacimiento { get; set; }
         public string? Telefono { get; set; }
         public string? Direccion { get; set; }
-        public int? CiudadId { get; set; }
+        public CiudadDTO? Ciudad { get; set; }
+        public ProvinciaDTO? Provincia { get; set; }
         public string? ImagenPerfil { get; set; }
     }
 }

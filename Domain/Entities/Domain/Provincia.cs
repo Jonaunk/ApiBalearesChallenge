@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities.Contactos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace Domain.Entities.Domain
         public string? Nombre { get; set; }
         
         public virtual List<Ciudad>? Ciudades { get; set; }
+
+        public virtual ICollection<Contacto>? Contactos { get; set; }
     }
 }

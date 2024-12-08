@@ -26,6 +26,16 @@ namespace Application.Features.Contactos.Queries.GetAllContactosQuery
 
             if (!string.IsNullOrEmpty(parameters.Telefono))
                 Query.Where(x => x.Telefono.Contains(parameters.Telefono));
+
+            if (parameters.CiudadId != null && parameters.CiudadId != 0)
+                Query.Where(x => x.CiudadId == parameters.CiudadId);
+
+            if (parameters.ProvinciaId != null && parameters.ProvinciaId != 0)
+                Query.Where(x => x.ProvinciaId == parameters.ProvinciaId);
+
+            Query
+              .Include(x => x.Provincia)
+              .Include(x=> x.Ciudad);
         }
     }
 
