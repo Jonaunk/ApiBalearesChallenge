@@ -1,4 +1,5 @@
-﻿using Application.Features.Authenticate.Commands.RegisterCommand;
+﻿using Application.Features.Authenticate.Commands.AuthenticateCommand;
+using Application.Features.Authenticate.Commands.RegisterCommand;
 using Application.Features.Authenticate.User;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,19 @@ namespace BalearesChallengeApi.Controllers.V1
                 ConfirmPassword = request.ConfirmPassword,
                 UserName = request.UserName
             }));
+        }
+
+
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> AuthenticateAsync(AuthenticationRequest request)
+        {
+            var result = await Mediator.Send(new AuthenticateCommand
+            {
+                Email = request.Email,
+                Password = request.Password
+            });
+           
+            return Ok(result);
         }
     }
 }

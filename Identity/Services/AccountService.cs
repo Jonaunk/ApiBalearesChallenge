@@ -30,7 +30,7 @@ namespace Identity.Services
             _user = currentUserService.User;
         }
 
-        public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
+        public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request)
         {
             var usuario = await _userManager.FindByEmailAsync(request.Email);
             if (usuario == null)
