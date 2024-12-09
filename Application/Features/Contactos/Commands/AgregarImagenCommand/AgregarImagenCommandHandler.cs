@@ -40,7 +40,7 @@ namespace Application.Features.Contactos.Commands.AgregarImagenCommand
             await _unitOfWork.Repository<Contacto>().UpdateAsync(contacto);
             await _unitOfWork.Repository<Contacto>().SaveChangesAsync(cancellationToken);
 
-            return new Response<string>("Imagen agregada exitosamente.");
+            return new Response<string>(true, "Imagen agregada exitosamente.");
         }
     }
 }

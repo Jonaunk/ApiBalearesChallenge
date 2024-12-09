@@ -35,7 +35,7 @@ namespace Application.Features.Contactos.Commands.CreateContacto
 
             await _unitOfWork.Save(cancellationToken);
 
-            return new Response<string>($"Se ha creado el contacto con Id: {newContacto.Id}");
+            return new Response<string>(true, $"Se ha creado el contacto con Id: {newContacto.Id}");
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Application.Features.Contactos.Commands.UpdateContacto
             await _unitOfWork.Repository<Contacto>().UpdateAsync(contacto);
             await _unitOfWork.Repository<Contacto>().SaveChangesAsync(cancellationToken);
 
-            return new Response<string>($"Contacto con ID {request.Id} actualizado correctamente.");
+            return new Response<string>(true, $"Contacto con ID {request.Id} actualizado correctamente.");
         }
     }
 }
