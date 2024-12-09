@@ -58,7 +58,7 @@ Esta solución es una API RESTful desarrollada con **ASP.NET Core**. La API perm
 
 - Se adjunta script de la base de datos, a modo de cumplir con el challenge, ya que con las migraciones y seeds no es sumamente necesario
   
-- Ejecuta el script `BalearesDb.sql` en tu servidor de SQL Server para crear la base de datos y poblarla con los datos iniciales.
+- Ejecuta el script `BalearesDb.sql` en SQL Server para crear la base de datos y poblarla con los datos iniciales. El script se encuentra dentro de la carpeta `BalearesDb`.
 
 
 ## Documentacion endpoints UsuariosController
