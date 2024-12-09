@@ -27,9 +27,9 @@ namespace Application.Features.Contactos.Commands.UpdateContacto
         {
             var contacto = await _unitOfWork.Repository<Contacto>().GetByIdAsync(request.Id);
 
-            if (contacto is null) throw new ApiException($"Contacto con ID {request.Id} no encontrado.");
+            if (contacto is null) throw new ApiException($"Contacto con Id = {request.Id} no encontrado.");
         
-            if(contacto.FechaBaja is not null) throw new ApiException($"Contacto con ID {request.Id} se encuentra dado de baja.");
+            if(contacto.FechaBaja is not null) throw new ApiException($"Contacto con Id = {request.Id} se encuentra dado de baja.");
 
 
             _mapper.Map(request, contacto);

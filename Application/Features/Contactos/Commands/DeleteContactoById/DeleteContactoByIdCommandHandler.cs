@@ -37,7 +37,7 @@ namespace Application.Features.Contactos.Commands.DeleteContactoById
 
             await _unitOfWork.Save(cancellationToken);
 
-            return new Response<string>("Eliminado exitosamente");
+            return new Response<string>(true, "Eliminado exitosamente");
         }
     }
 }
