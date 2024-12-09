@@ -417,36 +417,6 @@ El endpoint recibe el Id del Contact y una imagen:
   "errors": null
 }
 ```
-## Tecnologías y Patrones Utilizados (entre otros).
-1. ASP.NET Core
-- Framework: Se utiliza ASP.NET Core 8.0 para construir la API RESTful.
-2. Clean Architecture
-- Patrón de Diseño: La solución sigue el patrón de Clean Architecture, que promueve la separación de preocupaciones y la organización del código en capas independientes para facilitar el mantenimiento y escalabilidad de la aplicación.
-  Capas Principales:
-
-  API (Presentación): Contiene los controladores que gestionan las solicitudes HTTP.
-
-  Application (Aplicación): Maneja la lógica de negocio y las interacciones entre las distintas capas.
-
-  Domain (Dominio): Define los modelos y las entidades de negocio.
-
-  Infrastructure (Infraestructura): Implementa la interacción con servicios externos, como la base de datos y los servicios de almacenamiento.
-
-3. MediatR
-- Librería de Mediator: Se utiliza MediatR para implementar el patrón Mediator, lo que permite una comunicación desacoplada entre los controladores y la lógica de negocio. Esto mejora la organización y escalabilidad del código.
-4. Swagger/OpenAPI
-- Documentación de la API: Se utiliza Swagger para generar la documentación de los endpoints de la API.
-5. AutoMapper
-- Mapeo de Objetos: Se usa AutoMapper para mapear de manera automática entre objetos de modelo y DTOs, lo que simplifica la conversión de datos entre capas.
-6. JWT 
-- Autenticación y Autorización: Se implementa la autenticación y autorización basada en JWT para proteger los endpoints y garantizar que solo los usuarios autenticados puedan acceder a ciertos recursos.
-7. Entity Framework Core (EF Core)
-- ORM (Mapeo Objeto-Relacional): EF Core se utiliza como el ORM para interactuar con la base de datos de manera eficiente y manejar operaciones CRUD.
-8. FluentValidation
-- Validación de Datos: Se utiliza FluentValidation para la validación de datos de entrada, lo que mejora la legibilidad y gestión de las reglas de validación.
-9. Middleware Personalizado
-- Manejo de Excepciones y Errores: Se incluye middleware personalizado para capturar y manejar errores.
-- Middleware de Autenticación y Autorización: Se incluye middleware middleware de autenticación para validar y gestionar tokens JWT.
 
   ## Desafíos encontrados durante el desarrollo
 
