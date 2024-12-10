@@ -33,7 +33,8 @@ namespace Application.Features.Contactos.Queries.GetAllContactosQuery
 
             Query.Where(x => x.FechaBaja == null)
               .Include(x => x.Provincia)
-              .Include(x => x.Ciudad);
+              .Include(x => x.Ciudad)
+              .Include(x => x.Transporte);
         }
     }
 

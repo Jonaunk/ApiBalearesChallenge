@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Transporte : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,6 +28,25 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Provincias", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transportes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tipo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UsuarioAlta = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FechaAlta = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UsuarioModificacion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UsuarioBaja = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    FechaBaja = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transportes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +90,7 @@ namespace Persistence.Migrations
                     CiudadId = table.Column<int>(type: "int", nullable: true),
                     ProvinciaId = table.Column<int>(type: "int", nullable: true),
                     ImagenPerfil = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransporteId = table.Column<int>(type: "int", nullable: true),
                     UsuarioAlta = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FechaAlta = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UsuarioModificacion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -91,6 +111,11 @@ namespace Persistence.Migrations
                         column: x => x.ProvinciaId,
                         principalTable: "Provincias",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Contactos_Transportes_TransporteId",
+                        column: x => x.TransporteId,
+                        principalTable: "Transportes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -107,6 +132,13 @@ namespace Persistence.Migrations
                 name: "IX_Contactos_ProvinciaId",
                 table: "Contactos",
                 column: "ProvinciaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contactos_TransporteId",
+                table: "Contactos",
+                column: "TransporteId",
+                unique: true,
+                filter: "[TransporteId] IS NOT NULL");
         }
 
         /// <inheritdoc />
@@ -117,6 +149,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Ciudades");
+
+            migrationBuilder.DropTable(
+                name: "Transportes");
 
             migrationBuilder.DropTable(
                 name: "Provincias");

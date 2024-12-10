@@ -1,5 +1,6 @@
 ﻿using Domain.Common;
 using Domain.Entities.Domain;
+using Domain.Entities.Transportes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,10 @@ namespace Domain.Entities.Contactos
         public int? CiudadId { get; set; }
         public int? ProvinciaId { get; set; }
         public string? ImagenPerfil { get; set; }
+        public int? TransporteId { get; set; }
 
         public virtual Ciudad? Ciudad { get; set; }
         public virtual Provincia? Provincia { get; set; }
+        public virtual Transporte? Transporte { get; set; }
     }
 }

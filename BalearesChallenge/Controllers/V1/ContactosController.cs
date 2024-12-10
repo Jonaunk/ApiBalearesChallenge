@@ -14,7 +14,7 @@ namespace BalearesChallengeApi.Controllers.V1
     /// Controlador para gestionar el crud de contactos
     /// </summary>
     [ApiVersion("1.0")]
-    //Authorize]
+    [Authorize]
     public class ContactosController : BaseApiController
     {
 
@@ -36,7 +36,8 @@ namespace BalearesChallengeApi.Controllers.V1
                 Telefono = command.Telefono,
                 Direccion = command.Direccion,
                 CiudadId = command.CiudadId,
-                ProvinciaId = command.ProvinciaId
+                ProvinciaId = command.ProvinciaId,
+                TransporteId = command.TransporteId
             }));
         }
 
@@ -95,7 +96,8 @@ namespace BalearesChallengeApi.Controllers.V1
                 Telefono = command.Telefono,
                 Direccion = command.Direccion,
                 CiudadId = command.CiudadId,
-                ProvinciaId = command.ProvinciaId
+                ProvinciaId = command.ProvinciaId,
+                TransporteId = command.TransporteId
             }));
         }
 

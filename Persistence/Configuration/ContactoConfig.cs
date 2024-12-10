@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Contactos;
+using Domain.Entities.Transportes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -53,6 +54,12 @@ namespace Persistence.Configuration
             builder.HasOne(p => p.Provincia)
                 .WithMany(c => c.Contactos)
                 .HasForeignKey(c => c.ProvinciaId);
+
+
+            //builder.HasOne(p => p.Transporte)
+            //    .WithOne(p => p.Contacto)
+            //    .HasForeignKey<Transporte>(t => t.ContactoId);
+
 
         }
     }

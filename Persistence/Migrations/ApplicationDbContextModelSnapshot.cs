@@ -69,6 +69,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TransporteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UsuarioAlta")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -87,6 +90,10 @@ namespace Persistence.Migrations
                     b.HasIndex("CiudadId");
 
                     b.HasIndex("ProvinciaId");
+
+                    b.HasIndex("TransporteId")
+                        .IsUnique()
+                        .HasFilter("[TransporteId] IS NOT NULL");
 
                     b.ToTable("Contactos");
                 });
@@ -172,6 +179,44 @@ namespace Persistence.Migrations
                     b.ToTable("Provincias");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Transportes.Transporte", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaBaja")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaModificacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UsuarioAlta")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UsuarioBaja")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("UsuarioModificacion")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transportes");
+                });
+
             modelBuilder.Entity("Domain.Entities.Contactos.Contacto", b =>
                 {
                     b.HasOne("Domain.Entities.Domain.Ciudad", "Ciudad")
@@ -182,9 +227,15 @@ namespace Persistence.Migrations
                         .WithMany("Contactos")
                         .HasForeignKey("ProvinciaId");
 
+                    b.HasOne("Domain.Entities.Transportes.Transporte", "Transporte")
+                        .WithOne("Contacto")
+                        .HasForeignKey("Domain.Entities.Contactos.Contacto", "TransporteId");
+
                     b.Navigation("Ciudad");
 
                     b.Navigation("Provincia");
+
+                    b.Navigation("Transporte");
                 });
 
             modelBuilder.Entity("Domain.Entities.Domain.Ciudad", b =>
@@ -206,6 +257,11 @@ namespace Persistence.Migrations
                     b.Navigation("Ciudades");
 
                     b.Navigation("Contactos");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Transportes.Transporte", b =>
+                {
+                    b.Navigation("Contacto");
                 });
 #pragma warning restore 612, 618
         }

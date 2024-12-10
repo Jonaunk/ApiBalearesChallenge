@@ -21,5 +21,6 @@ namespace Application.Features.Contactos.Commands.UpdateContacto
         public string? Direccion { get; set; }
         public int? CiudadId { get; set; }
         public int? ProvinciaId { get; set; }
+        public int? TransporteId { get; set; }
     }
 }

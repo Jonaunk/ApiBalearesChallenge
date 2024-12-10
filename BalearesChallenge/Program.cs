@@ -125,5 +125,5 @@ async Task CargarSeeds()
 
     await ProvinciasSeed.SeedProvinciaAsync(context);
     await CiudadesSeed.SeedCiudadAsync(context);
-   
+   //await TransporteSeed.SeedTransporteAsync(context);
 }

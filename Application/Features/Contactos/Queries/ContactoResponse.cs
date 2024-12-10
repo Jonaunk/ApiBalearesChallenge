@@ -18,6 +18,7 @@ namespace Application.Features.Contactos.Queries
         public string? Direccion { get; set; }
         public CiudadDTO? Ciudad { get; set; }
         public ProvinciaDTO? Provincia { get; set; }
+        public TransporteDTO? Transporte { get; set; }
         public string? ImagenPerfil { get; set; }
     }
 }
